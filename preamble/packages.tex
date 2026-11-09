@@ -1,0 +1,96 @@
+% Retain the TUM layout, with more readable body text and shorter lines.
+\pgfkeys{/TUM/page/layout/insidepage/.append style={
+  /TUM/page/inner=30mm,
+  /TUM/page/outer=30mm}}
+\KOMAoptions{fontsize=12pt}
+\setsansfont{TeX Gyre Heros}
+\setkomafont{TUM.threeliner}{\sffamily\upshape\color{TUMBlue}}
+\setmonofont{TeX Gyre Cursor}[Scale=MatchLowercase]
+\setlength{\emergencystretch}{1em}
+\usepackage{microtype}
+\usepackage{csquotes}
+
+
+% Mathematics and physical quantities
+\usepackage{mathtools}
+% The TUM Palatino option already loads newpxmath, including AMS symbols.
+\usepackage{bm}
+\usepackage{derivative}
+\usepackage{siunitx}
+\usepackage[version=4]{mhchem}
+\sisetup{
+  separate-uncertainty = true,
+  per-mode = symbol,
+  range-phrase = {--},
+  range-units = single
+}
+
+% Figures, tables, and captions
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{pgf}
+\usepackage{import}
+% Keep PGF image sidecars relative to the figure being imported.
+\newcommand{\thesisfigure}[3]{\resizebox{#1}{!}{\import{figures/#2/}{#3.pgf}}}
+\graphicspath{{figures/}{tum/}}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{placeins}
+\usepackage{float}
+\usepackage{needspace}
+\usepackage{pdflscape}
+
+% Lists and source code
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny\color{gray}
+}
+
+% Bibliography: Biber handles UTF-8 names and modern BibLaTeX features.
+\usepackage[
+  backend=biber,
+  style=authoryear,
+  sorting=nyt,
+  sortcites=true,
+  giveninits=true,
+  uniquename=init,
+  maxcitenames=2,
+  mincitenames=1,
+  maxbibnames=99,
+  doi=true,
+  url=true,
+  isbn=false
+]{biblatex}
+% Prefer DOI links; retain URLs and eprints for entries without a DOI.
+\AtEveryBibitem{%
+  \iffieldundef{doi}{}{\clearfield{url}\clearfield{urlyear}\clearfield{urlmonth}\clearfield{urlday}\clearfield{eprint}\clearfield{eprinttype}\clearfield{eprintclass}}%
+}
+% Show only publication years for non-web sources; preserve access dates.
+\AtEveryBibitem{%
+  \ifentrytype{online}{}{%
+    \clearfield{month}\clearfield{day}%
+    \clearfield{endmonth}\clearfield{endday}%
+  }%
+}
+% Allow long bibliography URLs to wrap within the text margins.
+\usepackage{xurl}
+
+% tumbook already loads hyperref with unobtrusive links.
+\hypersetup{
+  hidelinks,
+  pdfauthor={\ThesisAuthor},
+  pdftitle={\ThesisTitle}
+}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\crefname{equation}{equation}{equations}
+\crefname{figure}{figure}{figures}
+\crefname{table}{table}{tables}

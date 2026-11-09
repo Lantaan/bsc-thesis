@@ -1,0 +1,21 @@
+% Exact German declaration wording from the official TUM title-page ZIP.
+% Its original unbreakable signature line overlaps with descriptive placeholders;
+% two wrapping columns also accommodate longer real names and dates.
+\makeatletter
+\renewcommand{\@tum@student@disclamer@block@}{{%
+  \begin{otherlanguage}{ngerman}
+  \raggedright\noindent
+  Ich versichere hiermit, dass ich die von mir eingereichte Abschlussarbeit
+  selbstständig verfasst und keine anderen als die angegebenen Quellen und
+  Hilfsmittel benutzt habe.\par
+  \vspace{2cm}
+  \noindent
+  \begin{minipage}[t]{0.48\textwidth}
+    \raggedright\theAuthorCity\@tum@date@separator@\theDateSubmitted
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.48\textwidth}
+    \raggedright\@author
+  \end{minipage}\par
+  \end{otherlanguage}
+}}
+\makeatother

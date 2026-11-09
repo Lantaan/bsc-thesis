@@ -1,0 +1,31 @@
+% chktex-file 29
+\chapter{Simulations}
+\label{chap:simulations}
+
+\section{Simulation framework}
+
+The simulations use Geant4 11.4.1, a Monte Carlo particle-transport simulation toolkit~\parencite[Geant4 Scope of Application]{geant4introduction}. Primary gammas are generated with a specified position, direction, and energy and tracked until they are absorbed or leave the simulated volume. The starting configuration is FTFP\_BERT, a predefined collection of particle-interaction models supplied by Geant4~\parencite{geantftfpbert}. Its default electromagnetic models are replaced by polarized Livermore electromagnetic physics, and optical physics is added.
+Photoelectric absorption, Compton and Rayleigh scattering, secondary-particle transport, atomic relaxation, scintillation, Auger emission and cascades, and optical transport are computed. The Compton model used here includes shell binding energies and Doppler broadening from bound-electron momentum~\parencite{geant4polarizedcomptonsource}. For each energy-deposition step, the mean scintillation-photon count is $\langle N_\gamma\rangle=Y E_{\mathrm{dep}}$, where $Y$ is the material's constant yield and $E_{\mathrm{dep}}$ the energy deposited in that step. Counts are sampled from a Poisson distribution for means of at most ten photons and from a Gaussian distribution above this threshold~\parencite[Scintillation]{geantopticalprocesses}. No quenching or particle-dependent nonproportionality is simulated. The source code for the simulation application is available on GitHub.\footnote{\url{https://github.com/Lantaan/scintillator-sim}}
+
+Two types of simulation samples are used. Samples used to study the light distribution at the readout contain \num{20000} incident gammas and include scintillation and optical-photon transport processes. Separate samples of \num{100000} incident gammas record the gamma interaction sequences and energy deposited by the gammas and their secondary particles. These larger samples omit scintillation-photon generation to reduce computation time, while gamma scattering and secondary-particle transport remain enabled.
+
+\section{Detector model}
+
+The crystal geometry, reflector arrangement, ideal photon-absorbing readout, and \ce{CeBr3} material and surface models follow the predecessor setup of \textcite[pp.~21--23]{ovsiannikova2020light}. The crystal is enclosed by a reflector and aluminium housing on five faces, with the readout on the remaining face.
+
+\subsection{Reference geometry and irradiation}
+
+The \qtyproduct{51 x 51 x 10}{\milli\metre} crystal is centred at the origin and has thickness $T=\qty{10}{\milli\metre}$. Its entrance is at $z=-T/2=\qty{-5}{\milli\metre}$, and its readout is at $z=T/2=\qty{5}{\milli\metre}$. The transverse coordinates are $x,y$, and the depth measured from the entrance along $z$ is $s=z+T/2$.
+
+An unpolarized monoenergetic point beam starts at $(0,0,-\qty{5}{\milli\metre})$ and travels along $+z$. Inclination by $\theta$ changes the direction to $(\sin\theta,0,\cos\theta)$ without moving the source. The direct readout intersection is $x_{\mathrm{exit}}=T\tan\theta$, $y_{\mathrm{exit}}=0$.
+
+\subsection{Reflector, housing, and optical readout}
+
+The enclosure has a \qty{1}{\milli\metre} PTFE reflector and \qty{0.5}{\milli\metre} aluminium housing on the five non-readout faces. Reflection uses a dielectric--dielectric surface with a reflectivity of 0.97, a zero roughness parameter, and a refractive index matched to the crystal.
+
+A continuous silicon readout volume with a thickness of \qty{1.5}{\milli\metre} covers the remaining face. Its refractive index matches that of the crystal, and its optical absorption length is \qty{0.001}{\milli\metre}, so the absorption coordinates closely match the photon arrival positions. This ideal readout has no physical pixel segmentation, wavelength-dependent detection efficiency, or electronic response.
+
+Unless stated otherwise, comparisons at a single gamma energy use \qty{662}{\kilo\electronvolt}, corresponding approximately to the \ce{^{137}Cs} line~\parencite[section 2.2]{lnhb2023cs137}. Selected-energy comparisons use \qty{100}{\kilo\electronvolt}, \qty{662}{\kilo\electronvolt}, and \qty{1000}{\kilo\electronvolt} to represent the low- and high-energy responses.
+\subsection{Inherited \ce{CeBr3} model}
+
+The \ce{CeBr3} model is configured with a density of \qty{5.20}{\gram\per\cubic\centi\metre}, a yield of 60 photons per \unit{\kilo\electronvolt} deposited, and a constant refractive index of 1.9. The emission maximum is near \qty{370}{\nano\metre}. Its optical absorption length decreases from \qty{155}{\milli\metre} at \qty{2.86}{\electronvolt} to \qty{105}{\milli\metre} at \qty{3.60}{\electronvolt}. This inherited curve uses \ce{LaBr3} attenuation data, including absorption and scattering, as a surrogate, following the predecessor model~\parencite[p.~22, table 2.1]{ovsiannikova2020light}.

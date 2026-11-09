@@ -1,0 +1,175 @@
+\chapter{Foundations}
+\section{Gamma interactions}
+
+Gamma radiation can interact with matter in a variety of ways. The processes and their probabilities depend on the photon energy and on the composition and density of the material. In the independent-atom approximation, the linear interaction coefficient for a process $j$ is $\mu_j(E)=\sum_a n_a\sigma_{j,a}(E)$, where $n_a$ is the number density of atoms of element $a$ and $\sigma_{j,a}$ is the corresponding atomic cross section. The sum $\mu(E)=\sum_j\mu_j(E)$ gives the total interaction coefficient, and $\ell_\gamma=1/\mu$ is the mean free path before an interaction~\parencite{hubbell1995attenuation}.
+
+In a homogeneous material, the probability that a monoenergetic gamma travels a distance $u$ without interacting is
+\begin{equation}
+  P_0(u)=\exp[-\mu(E)u].
+\end{equation}
+The probability of at least one interaction is consequently $1-\exp[-\mu(E)u]$.
+This law describes removal from the uncollided beam, whether by absorption or scattering, and gives an exponential first-interaction distribution along the incident direction~\parencite{hubbell1995attenuation}.
+
+\subsection{Scattering}
+
+One of the ways a gamma may interact with matter is by scattering, changing its direction and imparting some of its energy to the material at the interaction site.
+
+\subsubsection{Rayleigh scattering}
+
+Rayleigh scattering is coherent scattering from the atomic electron cloud in which the atom's internal state remains unchanged. In the elastic approximation, recoil-energy transfer is neglected and the photon changes direction without energy transfer~\parencite{hubbell1969photon}.
+
+\subsubsection{Compton scattering}
+
+In Compton scattering, a gamma transfers energy and momentum to a single electron and continues in a different direction with lower energy. A useful approximation is to treat the electron as free and initially at rest. In this model, the energy transfer and the photon deflection are linked by energy and momentum conservation. More precisely, the outgoing gamma energy after scattering at an angle $\chi$ is
+\begin{equation}
+  E'=\frac{E}{1+(E/{m_e c^2})(1-\cos\chi)},
+  \qquad E_{\mathrm{tr}}=E-E',
+  \label{eq:compton-energy}
+\end{equation}
+where $E$ is the incident gamma energy, ${m_e c^2}$ the electron rest energy, and $E_{\mathrm{tr}}$ the energy transferred to the recoil electron~\parencite{compton1923}.
+
+The angular distribution is described by the Klein--Nishina formula for scattering from unpolarized free electrons initially at rest. Integrating over azimuth gives the differential cross section in $\chi$:
+\begin{equation}
+  \frac{d\sigma}{d\chi}=\pi r_e^2\sin\chi{\left(\frac{E'}{E}\right)}^2
+  \left(\frac{E'}{E}+\frac{E}{E'}-\sin^2\chi\right),
+  \qquad 0\leq\chi\leq\pi.
+  \label{eq:klein-nishina-angle}
+\end{equation}
+Here, $E'$ follows \cref{eq:compton-energy} and $r_e$ is the classical electron radius. The factor $\sin\chi$ accounts for the solid angle associated with each angular interval~\parencite{klein1929}.
+
+This polar-angle cross section applies independently of the incident photon polarization. However, polarization does affect the azimuthal distribution. For linearly polarized photons, the electric-field direction supplies a preferred axis perpendicular to the photon propagation direction. The scattering plane is the plane containing the incident and outgoing photon directions. At a fixed polar angle with $0<\chi<\pi$, scattering is more probable when the scattering plane is perpendicular to the electric-field axis than when it contains that axis. Integration over all azimuthal angles removes this modulation~\parencite{klein1929}.
+
+The free-electron description neglects both atomic binding and the electron's initial motion. Binding modifies the scattering probability, while the initial electron momentum broadens the relation between scattering angle and outgoing photon energy~\parencite{liang2020transport}. To illustrate the relative energy scales, the transfer $E_{\mathrm{tr}}$ can be compared with the binding energy $B$. For example, in a \ce{Bi4Ge3O12} (BGO) scintillator, the $K$-shell binding energies of oxygen, germanium, and bismuth are approximately \qty{0.54}{\kilo\electronvolt}, \qty{11}{\kilo\electronvolt}, and \qty{91}{\kilo\electronvolt}, respectively~\parencite[table 1-1]{williams2009binding}. Requiring $B/E_{\mathrm{tr}}<0.1$ gives transfer scales above approximately \qty{5.4}{\kilo\electronvolt}, \qty{111}{\kilo\electronvolt}, and \qty{910}{\kilo\electronvolt}. This shows that even at several hundred \unit{\kilo\electronvolt} of gamma energy, binding effects may still be relevant, though the exact influence depends on scattering angle and electron momentum~\parencite[eqs.~(7)--(11)]{liang2020transport}. For example, a gamma of \qty{662}{\kilo\electronvolt} scattering by \qty{30}{\degree} from lead, with a $K$-shell binding energy of \qty{88}{\kilo\electronvolt}~\parencite[table 1-1]{williams2009binding}, was shown to have a scattering cross section half that predicted by the free-electron model~\parencite[table I]{wolff1989compton}.
+
+\subsection{Photoelectric absorption}
+
+In photoelectric absorption, the gamma is absorbed by an atom and an electron is ejected from its shell. Neglecting atomic recoil, the electron carries away a kinetic energy of $T_e=E-B$, where $B$ is the shell binding energy. The remaining energy is initially associated with the vacancy in the atomic electron configuration~\parencite{ballabriga2016review}.
+
+The vacancy can be filled by an electron from a higher shell. The released energy can be emitted as a characteristic fluorescence photon or transferred directly to another electron, which is then emitted as an Auger electron~\parencite{ballabriga2016review}. These transitions leave further vacancies and can produce a relaxation cascade~\parencite{soronen2024photoionizationauger}. The energies and relative probabilities of these two processes depend on the element and the shells involved~\parencite{ballabriga2016review,soronen2024photoionizationauger}.
+
+When the photon energy reaches the binding energy of an additional electron shell, a further photoionization channel becomes available, causing a sharp increase in the cross section. This is known as an absorption edge. Different shells have different thresholds, so an element has several absorption edges. Between edges, the cross section generally decreases with increasing photon energy. In a compound, the mass attenuation coefficient can be approximated by a sum of the elemental coefficients weighted by their mass fractions, so the compound retains the edges of its constituents. Close to an edge, the measured cross section can show fine structure that depends on chemical state, phase, and temperature. Such structure is omitted in the independent-atom approximation~\parencite[section 2]{hubbell1995attenuation}.
+
+The photoelectric cross section depends strongly on photon energy and atomic number. Away from absorption edges, a rough empirical scaling of the cross section per atom is $\sigma_{\mathrm{pe}} \propto Z^{4.5}/E^3$ over the range \qtyrange{10}{500}{\kilo\electronvolt}~\parencite[table 2-5 and accompanying text]{hubbell1969photon}.
+
+\subsection{Pair production}
+
+In the field of a nucleus, a gamma can convert into an electron--positron pair, while the nucleus takes up recoil momentum. Energy conservation gives a threshold of approximately $2m_ec^2\approx\qty{1.022}{\mega\electronvolt}$ in the heavy-nucleus limit. Energy above the threshold is shared between the kinetic energies of the produced particles and nuclear recoil~\parencite{betheheitler1934pairs}. At even higher energies, pair production can also occur in the field of an atomic electron~\parencite{wheeler1936triples}.
+
+The positron can then annihilate with an electron into two photons~\parencite[p.~347]{klemperer1934annihilation}. For negligible initial kinetic energy, energy and momentum conservation give photons of approximately \qty{511}{\kilo\electronvolt} each, travelling in opposite directions.
+
+\subsection{Energy dependence of interaction probabilities}
+
+\begin{figure}[H]
+  \centering
+  \thesisfigure{\textwidth}{foundations}{bgo_attenuation}
+  \caption{Mass attenuation coefficients of BGO on a double-logarithmic scale. Lines connect the tabulated values. Pair production combines the nuclear- and electron-field contributions. Absorption-edge fine structure is not resolved. The total is the sum of all plotted process coefficients~\parencite{nistxcom}.}
+  \label{fig:foundations-attenuation}
+\end{figure}
+
+The relative importance of the different gamma interactions is illustrated by the mass attenuation coefficients of BGO in \cref{fig:foundations-attenuation}. The elemental contributions of oxygen, germanium, and bismuth are combined according to their mass fractions. Dividing the linear coefficient by the density gives $\mu_j/\rho$, which expresses the interaction probability per unit mass thickness.
+
+\Cref{fig:foundations-attenuation} shows photoelectric absorption dominating at low energies, with sharp changes at the constituent absorption edges. Compton scattering decreases more slowly with energy and exceeds the photoelectric contribution at approximately \qty{500}{\kilo\electronvolt}. Rayleigh scattering contributes little to attenuation compared with other processes and falls below Compton scattering between \qty{100}{\kilo\electronvolt} and \qty{150}{\kilo\electronvolt} in BGO. Pair production becomes possible above its threshold, although it does not immediately become the dominant process: at \qty{2}{\mega\electronvolt}, the Compton contribution is still larger. By \qty{10}{\mega\electronvolt}, pair production exceeds Compton scattering~\parencite{nistxcom}.
+
+\section{Secondary-particle transport and energy deposition}
+\subsection{Difference between energy transfer and deposited energy}
+
+After a gamma transfers energy to an electron through scattering or absorption, the electron carries kinetic energy and loses it through further interactions, including ionization and excitation. Some energy can also return to the photon field through bremsstrahlung or fluorescence~\parencite{hubbell1995energy}. The distribution of deposited energy therefore depends on the transport behaviour of these secondary particles as well as on the positions of the primary gamma interactions.
+
+In a finite crystal, not all energy transferred by a gamma is necessarily deposited in the crystal. A photoelectron or a fluorescence photon can escape the crystal~\parencite{storm2020photoelectronescape, ballabriga2016review}. This distinction is particularly relevant near a surface, where even a short secondary-particle path can carry energy outside the material.
+
+\subsection{Electron stopping and spatial spreading}
+
+The mean rate at which an electron loses kinetic energy along its path is described by the stopping power $S(T)=-\langle\mathrm{d}T/\mathrm{d}u\rangle$, where $T$ is the electron kinetic energy and $u$ the distance travelled. Its collision contribution, $S_{\mathrm{col}}$, arises mainly from inelastic interactions with the electrons of the material. These can excite the target, leaving it in a higher-energy state, or ionize it, releasing another electron. The latter may carry part of the transferred energy away from the original electron track~\parencite[pp. 1--2]{berger1983ranges}.
+
+An electron also loses energy by emitting bremsstrahlung as it is deflected in the electric fields of nuclei and atomic electrons. The corresponding stopping power is $S_{\mathrm{rad}}$~\parencite{berger1983ranges}. The bremsstrahlung photon can propagate independently of the electron and be absorbed elsewhere, extending the spatial redistribution of energy beyond the charged-particle track.
+
+The total stopping power is $S=S_{\mathrm{col}}+S_{\mathrm{rad}}$. The relative size of these terms depends on both electron energy and material. Collision losses are important as the electron slows down, whereas radiative losses become increasingly important at high energies. The nuclear contribution to bremsstrahlung also depends strongly on atomic number, making it more important in heavy elements. The collision contribution depends on the number of target electrons and their binding, commonly represented through the mean excitation energy of the medium~\parencite{berger1983ranges}.
+
+While losing energy, an electron also changes direction through scattering in the material~\parencite[eqs.~(17), (20)]{liang2020transport}.
+Many small deflections accumulate along its path, while less frequent large-angle collisions can produce substantial changes in direction. The angular distribution of this multiple scattering depends on the electron energy and on the scattering properties and number density of the atoms. The nuclear charge and its screening by the atomic electrons enter the single-scattering cross section, from which the accumulated angular distribution is obtained~\parencite{lewis1950multiple}.
+
+A compact measure of this change in direction is the mean scattering cosine. For independent elastic collisions in a homogeneous medium, over a path length $u$ for which the electron energy can be treated as constant, the first angular moment of the scattering equation gives
+\begin{equation}
+  \langle\cos\theta\rangle=\exp\!\left(-\frac{u}{\lambda_{\mathrm{tr}}}\right),
+  \qquad
+  \frac{1}{\lambda_{\mathrm{tr}}}
+  =\sum_i n_i\int_{4\pi}(1-\cos\chi)
+  \frac{\mathrm{d}\sigma_i}{\mathrm{d}\Omega}\,\mathrm{d}\Omega.
+\end{equation}
+Here, $\theta$ is the angle relative to the initial electron direction, $\chi$ the deflection in a single collision, and $\mathrm{d}\sigma_i/\mathrm{d}\Omega$ the differential elastic-scattering cross section for atomic species $i$ with number density $n_i$. The transport mean free path $\lambda_{\mathrm{tr}}$ characterizes the loss of directional alignment. The factor $1-\cos\chi$ gives larger deflections greater weight than small ones. As $u$ increases, the mean cosine decreases, indicating reduced alignment with the initial direction. For a slowing electron, the energy dependence is included by replacing $u/\lambda_{\mathrm{tr}}$ with $\int_0^u\mathrm{d}u'/\lambda_{\mathrm{tr}}[T(u')]$, treating the energy loss as continuous~\parencite[sections II--III]{lewis1950multiple}.
+
+The energy lost over a given path length also fluctuates because individual inelastic collisions transfer different amounts of energy. These fluctuations are called energy-loss straggling~\parencite[sections II.A.3 and II.C]{seltzer1974transmission}. Electrons with identical initial energies can consequently retain different energies after travelling the same distance. Together with the random angular deflections, these fluctuations produce different tracks and stopping positions even for identical starting conditions.
+
+\subsection{Relevant transport scales}
+
+The transport range of a secondary electron can be characterized by the continuous-slowing-down approximation (CSDA). Here, the electron is assumed to lose energy continuously at the mean rate given by the total stopping power. Its path length from an initial kinetic energy $T_0$ to rest is then
+\begin{equation}
+  R_{\mathrm{CSDA}}(T_0)=\int_0^{T_0}\frac{\mathrm{d}T}{S_{\mathrm{col}}(T)+S_{\mathrm{rad}}(T)}.
+\end{equation}
+A CSDA range approximates the total distance travelled along a track~\parencite[section 10]{berger1983ranges}. Multiple scattering changes the electron trajectory, so the typical displacement from the starting point is shorter than the total path length.
+
+BGO, used in the previous example, has a density of $\rho=\qty{7.1}{\gram\per\cubic\centi\metre}$ and mass CSDA ranges of \qty{0.027}{\gram\per\square\centi\metre} and \qty{0.71}{\gram\per\square\centi\metre} at electron kinetic energies of \qty{100}{\kilo\electronvolt} and \qty{1}{\mega\electronvolt}~\parencite{nistestar}. Dividing by $\rho$ gives path lengths of approximately \qty{0.037}{\milli\metre} and \qty{0.99}{\milli\metre}, respectively.
+
+In comparison, the mass-weighted sum of the elemental attenuation coefficients in BGO gives $\mu/\rho\approx\qty{4.0}{\square\centi\metre\per\gram}$ at \qty{100}{\kilo\electronvolt} and \qty{0.068}{\square\centi\metre\per\gram} at \qty{1}{\mega\electronvolt}~\parencite{nistxcom}. With $\ell_\gamma=[\rho(\mu/\rho)]^{-1}$, these correspond to mean free paths of approximately \qty{0.35}{\milli\metre} and \qty{20.6}{\milli\metre}, respectively. Therefore, the gamma mean free path is substantially longer than the electron CSDA path length.
+
+Fluorescence photons also carry energy away from the primary interaction site. In BGO, the bismuth $K\alpha_1$ line lies at approximately \qty{77}{\kilo\electronvolt}~\parencite[table 1-2]{kortright2009xray}. This fluorescence-photon energy is therefore comparable to that of the \qty{100}{\kilo\electronvolt} gamma example. Notably, at \qty{80}{\kilo\electronvolt}, the same mass attenuation mixture calculation gives $\mu/\rho\approx\qty{1.9}{\square\centi\metre\per\gram}$ and a mean free path of approximately \qty{0.74}{\milli\metre}~\parencite{nistestar,nistxcom}. This is longer than the mean free path at \qty{100}{\kilo\electronvolt} because the bismuth $K$ absorption edge lies between the two energies, at \qty{91}{\kilo\electronvolt}~\parencite{nistxcom}. Absorption from that shell is possible at \qty{100}{\kilo\electronvolt} but not at \qty{80}{\kilo\electronvolt}, increasing attenuation above the edge.
+
+Unlike characteristic fluorescence lines, bremsstrahlung forms a continuous spectrum whose shape depends on the electron energy and target material. As an experimental example, the energy-weighted spectrum measured from a tungsten target at an accelerating voltage of \qty{100}{\kilo\volt} shows a pronounced maximum near \qty{30}{\kilo\electronvolt}~\parencite{ehrlich1955bremsstrahlung}. In this example, the energy at the bremsstrahlung maximum is of the same order of magnitude as the fluorescence-photon energy discussed above.
+
+\section{Scintillation-light production}
+
+As secondary particles lose energy in a scintillator, part of the deposited energy is emitted as optical photons. The emission occurs at luminescent centres: sites in the crystal with electronic states that can receive excitation energy and release it as light. An excited centre emits a photon when it returns to a lower electronic state through a radiative transition~\parencite{pedrini2005scintillation}.
+
+\subsection{Microscopic origin of scintillation}
+
+In an inorganic insulating scintillator, the microscopic description of scintillation starts with the electronic states of the crystal. The occupied valence states and the conduction states are separated by a band gap $E_g$. Energy deposited by a charged particle can elevate a valence electron into the conduction band, leaving a hole in the valence band~\parencite{pedrini2005scintillation}. Both the initial energetic electron and newly excited conduction electrons can produce further electron--hole pairs if they retain enough energy~\parencites[pp.~38, 44]{shockley1961junctions}.
+
+After this sequence of ionizations and excitations, electrons and holes can still have excess energy relative to the band edges. They exchange energy with lattice vibrations, described as phonons, and approach thermal equilibrium with the crystal. This transfers part of the electronic excitation energy to the lattice before optical emission~\parencite{pedrini2005scintillation}. During this process, an electron travels a distance known as the thermalization distance. Calculations for several halide scintillators give typical thermalization distances for unrecombined electrons of \qtyrange{25}{50}{\nano\metre}, with some electrons travelling a few hundred nanometres~\parencite{wang2012thermalization}.
+
+An electron and a hole can form a bound state, called an exciton. The pair changes the forces on nearby ions and can shift them from their equilibrium positions. If this rearrangement lowers the energy sufficiently, it binds the pair to that region, forming a self-trapped exciton. Energy can migrate as the pair and its surrounding distortion move between neighbouring sites, allowing light to be emitted away from the formation site~\parencite{prange2013excitations}. As an example, diffusion-model fits to the luminescence decay of \ce{SrF2} nanoparticles estimated mean self-trapped-exciton migration lengths of \qtyrange{13}{17}{\nano\metre}~\parencite{chylii2018diffusion}. At high densities, interactions between excitons can remove energy from the light-producing channel. This effect is known as density-dependent quenching~\parencite{prange2013excitations}.
+
+Carrier trapping at defects can also alter the route to light emission.
+A defect can introduce a localized electronic state in which an electron or hole can be bound. Capture into such a state traps the carrier near the defect instead of allowing it to move freely through the crystal, changing the routes available for recombination~\parencite{vanginhoven2013defects}.
+
+In BGO, measurements of the light intensity and decay time show that nonradiative decay becomes significant above approximately $\qty{250}{\kelvin}$. The temperature dependence is attributed to thermally activated nonradiative processes competing with radiative decay~\parencite{gironnet2008bgo}.
+
+The radiative channel terminates with light emission from a luminescent centre. This can occur either when an electron--hole pair recombine, acting as an intrinsic luminescent centre or when the excitation energy is transferred to another luminescent centre, which emits through a transition between its own electronic states. Recombination does not always produce a photon: a nonradiative route transfers energy to the lattice instead~\parencite{pedrini2005scintillation}.
+
+\subsection{Conversion of deposited energy to photon number}
+
+Since some of the energy is diverted to nonradiative processes, it is necessary to consider the scintillation yield, which expresses the mean number of emitted photons per unit deposited energy. It depends on the efficiency of creating electronic excitations, their transfer to emitting centres, and the radiative efficiency of those centres~\parencite{pedrini2005scintillation}.
+
+For a proportional scintillator, the mean emitted photon number is $\langle N_\gamma\rangle=Y E_{\mathrm{dep}}$, with constant yield $Y$. A nonproportional response instead has a light yield per unit deposited energy that varies with the energy of the exciting particle. In practice, fully proportional scintillators do not exist. Nevertheless, a constant yield can be a useful approximation whose accuracy depends on the material, energy range, and external conditions. For example, room-temperature measurements of BGO reported about \qty{14}{\percent} variation in light yield per unit energy over gamma energies of \qtyrange{32}{1274}{\kilo\electronvolt}, normalized to the yield at \qty{662}{\kilo\electronvolt}~\parencite{sreebunpeng2012comparison}.
+
+One cause of nonproportionality is density-dependent quenching. Since the excitation density varies along an electron track and with electron energy, the light emitted per unit deposited energy can vary~\parencite[section III]{payne2009nonproportionality}.
+
+\subsection{Emission spectrum}
+
+Scintillation photons have a material-dependent spectrum whose shape reflects the radiative transitions responsible for luminescence. These can involve centres intrinsic to the host crystal or ions introduced as activators. Their electronic states and coupling to the surrounding lattice differ, so different scintillators have different emission bands~\parencite{prange2013excitations}.
+
+\section{Optical transport to the readout}
+
+Even for an isotropic scintillation source, the light arriving at a detector plane is not uniform. An area element $\mathrm{d}A$ at distance $R$ from the source subtends the solid angle $\mathrm{d}\Omega=\cos\alpha\,\mathrm{d}A/R^2$, where $\alpha$ is the angle between the incoming ray and the plane normal. For a point source a perpendicular distance $d$ from the plane, $R^2=d^2+r^2$ and $\cos\alpha=d/R$, where $r$ is the distance from the projected source position. The direct photon-arrival probability per unit area is therefore $\mathrm{d}P/\mathrm{d}A=d/[4\pi(d^2+r^2)^{3/2}]$, before absorption or reflections.
+
+During propagation, an optical photon may be absorbed. As for gamma radiation, in a homogeneous medium with absorption length $\Lambda(\lambda)$, the survival probability after an optical path of length $u$ is $\exp[-u/\Lambda(\lambda)]$. Here, $\Lambda$ is the mean distance travelled before absorption and in general depends on wavelength~\parencite[fig.~8]{miller2025material}.
+
+Optical photons may travel distances much greater than the size of the scintillator because of reflections at its boundaries, including total internal reflection. The latter follows from Snell's law, $n_1\sin\alpha_1=n_2\sin\alpha_2$, where $n_1$ is the refractive index inside the scintillator and $n_2$ that of the adjacent material. For $n_1>n_2$, incidence above $\alpha_c=\arcsin(n_2/n_1)$ gives total internal reflection.
+
+Not all scintillation photons that reach the readout produce a signal. The photon detection efficiency is the probability that an arriving photon produces a detectable response and generally depends on wavelength~\parencite{eckert2010characterisation}. A spatial photon-arrival distribution must therefore be combined with the readout's wavelength-dependent detection efficiency to determine the expected detected distribution.
+
+\section{Photodetection with silicon photomultipliers}
+
+A commonly used detector of scintillation light is the silicon photomultiplier (SiPM). It consists of many small photodiodes, called microcells. Each photodiode contains a junction between p-type silicon, where holes are the majority mobile carriers, and n-type silicon, where electrons are the majority mobile carriers. Photon absorption can create an electron--hole pair. An applied voltage separates the carriers and drives them towards the electrical contacts. Within the high-field multiplication region, a carrier can gain enough energy to create further electron--hole pairs by impact ionization, producing an avalanche~\parencite{piatek2014sipm}.
+
+The breakdown voltage $V_{\mathrm{br}}$ marks the onset of self-sustaining avalanche multiplication. Operating a microcell at a voltage $V>V_{\mathrm{br}}$ is called Geiger mode: a single carrier can then trigger an avalanche that must be stopped externally~\parencite{piatek2014sipm}.
+In a passively quenched SiPM, a series resistor reduces the voltage during the discharge until the avalanche stops. The cell then recharges towards its initial operating voltage. In a simple circuit approximation, the recovery time is $\tau\approx R_q C_{\mathrm{cell}}$, where $R_q$ is the quenching resistance and $C_{\mathrm{cell}}$ the effective pixel capacitance. A further avalanche during recovery produces less charge because the overvoltage $V_{\mathrm{bias}}-V_{\mathrm{br}}$ has not yet been fully restored~\parencite{eckert2012response}.
+
+The photon detection efficiency (PDE) includes several probabilities. A useful factorization is
+\begin{equation}
+  \mathrm{PDE}(\lambda,V)=f_{\mathrm{fill}}\,\eta(\lambda)\,P_{\mathrm{av}}(\lambda,V),
+\end{equation}
+where $f_{\mathrm{fill}}$ is the fraction of the sensor area occupied by photosensitive cells, $\eta$ the probability of producing a charge carrier available for detection there, and $P_{\mathrm{av}}$ its probability of initiating an avalanche. Here, $\lambda$ is the photon wavelength and $V$ the applied bias voltage. The PDE therefore varies with photon wavelength~\parencite{eckert2010characterisation}.
+
+At high light levels, several photons can reach the same microcell before it recovers. The output then ceases to be proportional to photon number and approaches saturation~\parencite{eckert2012response}.
+
+SiPM noise includes both independently initiated avalanches and additional avalanches caused by an earlier one. Thermally generated carriers can initiate dark counts without an incident photon. Any avalanche, whether initiated by light or by a dark event, can in turn produce correlated noise: photons generated during the avalanche can trigger a neighbouring cell, causing optical crosstalk, while trapped carriers released later can produce afterpulses~\parencite{eckert2010characterisation}.

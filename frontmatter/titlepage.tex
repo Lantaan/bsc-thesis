@@ -1,0 +1,11 @@
+% Official TUM title-page layout, compiled by .latexmkrc.
+% Only its first page is used; the German declaration is typeset below.
+\includepdf[pages=1,pagecommand={\thispagestyle{empty}}]{build/titlepage/Deckblatt.pdf}
+% Activate the configured body margins, as tumbook's maketitle previously did.
+\pagestyle{TUM.insidepage}
+\thispagestyle{empty}
+\null\vfill
+\makeatletter
+\@tum@student@disclamer@block@
+\makeatother
+\cleardoublepage

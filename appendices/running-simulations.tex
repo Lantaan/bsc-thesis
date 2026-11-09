@@ -1,0 +1,55 @@
+% chktex-file 29
+
+\chapter{Running further simulations}
+\label{app:running-simulations}
+\lstset{basicstyle=\ttfamily\footnotesize,columns=fullflexible,
+  keepspaces=true,showstringspaces=false}
+
+This appendix describes how to perform a simulation case. The source code, installation scripts, and further setup instructions are available in the simulation repository:
+\begin{center}
+  \url{https://github.com/Lantaan/scintillator-sim}
+\end{center}
+
+\section{Preparing the application}
+
+In a Bash terminal on Linux or WSL Ubuntu on Windows, obtain the code and build it with the \geantfour{} version used in this work:
+\begin{lstlisting}[language=bash,numbers=none]
+git clone https://github.com/Lantaan/scintillator-sim.git
+cd scintillator-sim
+bash scripts/setup_wsl_geant4.sh \
+  --geant-version 11.4.1 --without-qt --install-deps
+\end{lstlisting}
+The script installs \geantfour{}, its datasets, and the application. Omit \texttt{--install-deps} if system dependencies are already installed. Otherwise this step requires admin privileges. More detailed setup and troubleshooting instructions are in \path{docs/}.
+
+For an existing installation, enter the simulation repository and rebuild after source changes with:
+\begin{lstlisting}[language=bash,numbers=none]
+bash scripts/build_app.sh
+\end{lstlisting}
+Both the build and batch scripts load the \geantfour{} environment from \path{$HOME/geant-install/bin/geant4.sh}.
+
+\section{Running a simulation with a macro}
+
+Simulation cases are defined as \path{.mac} files, containing the text commands to configure the application. Most importantly it specifies the output records while also containing declarations of the detector geometry, material, and incident beam. The macro can be edited without recompiling the application.
+
+The example macro \path{default.mac} in the repository's root directory contains comments explaining the exact configuration options and can be used as a reference when preparing or modifying a macro.
+
+From a Bash terminal in the \texttt{scintillator-sim} repository, run a specified macro and write its output into an existing directory with:
+
+\begin{lstlisting}[language=bash,numbers=none]
+OPNOVICE_DATA_DIR="/absolute/path/to/output" \
+  bash scripts/run_batch.sh "/absolute/path/to/case.mac"
+\end{lstlisting}
+
+Replace the two paths with the desired output directory and macro file. The simulation messages appear in the terminal, and the output files declared by the macro are written to the specified directory.
+
+Since the simulation overwrites existing files, using different target directories for different cases is recommended. If \path{OPNOVICE_DATA_DIR} is not set, the output is written to the \path{data/} directory in the root of the repository.
+
+\section{Checking the run and using its output}
+
+After the command finishes, check the terminal output for errors and for the line beginning \texttt{number of event = }. Its count should agree with the value requested by \path{/run/beamOn}. The output files are saved in the chosen directory. Which files are generated depends on the output selections and physics settings in the macro. Important CSV files include:
+\begin{itemize}\setlength{\itemsep}{0pt}
+  \item \path{results_nt_absorption.csv}: detected optical-photon positions;
+  \item \path{results_nt_pr_int.csv}: primary-gamma interactions;
+  \item \path{results_nt_scat_angles.csv}: Compton-scattering records;
+  \item \path{results_nt_energy_deposition.csv}: energy-deposition steps in the scintillator.
+\end{itemize}

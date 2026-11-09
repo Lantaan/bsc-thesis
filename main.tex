@@ -1,0 +1,58 @@
+% !BIB program = biber
+% !TeX root = main.tex
+\input{preamble/metadata}
+\PassOptionsToPackage{textfont=palatino}{tumfonts}
+\documentclass[a4paper,thesis=student,english,oneside,openany,coverpage=false,titlepage=false]{tumbook}
+\KOMAoptions{headings=optiontoheadandtoc,listof=totoc}
+
+\input{preamble/packages}
+\input{preamble/commands}
+\input{frontmatter/declaration}
+
+\addbibresource{bibliography/references.bib}
+
+\title{\ThesisTitle}
+\subtitle{\ThesisSubtitle}
+\author{\ThesisAuthor}
+\degree{\ThesisDegree}
+\dateSubmitted{\SubmissionDate}
+\examiner{\ThesisExaminer}
+
+\begin{document}
+
+\frontmatter
+\input{frontmatter/titlepage}
+
+\chapter{Abstract}
+
+A narrow gamma beam can produce different scintillation-light patterns at the readout. At low energies, the optical photons spread broadly across the readout, while at higher energies, a sharp central peak appears.
+
+This thesis uses Geant4 simulations to investigate how these patterns arise in cerium bromide (\ce{CeBr3}) and bismuth germanate (BGO), examining the effects of gamma energy, incidence angle, and beam width. The results identify interaction depth and the subsequent propagation of scintillation light as the main influences on the observed shape. Deposits close to the readout produce the sharp central contribution, although most detected light remains distributed over a wider area. Gamma scattering modifies both the centre and the tails but has a comparatively small effect on the overall pattern.
+
+Compact parametric models reproduce the main features of these simulated distributions, with remaining limitations for inclined beams. Together, the physical interpretation and mathematical descriptions could provide a basis for future studies of beam wavelength reconstruction.
+
+\par\vspace{1.5\baselineskip}
+\noindent\begin{minipage}{\textwidth}
+  \centering
+  \thesisfigure{0.90\textwidth}{introduction}{energy_heatmaps}
+  \par\smallskip
+  {\small\raggedright
+  Simulated \ce{CeBr3} light patterns at the readout for perpendicular point beams at \num{100} and \qty{662}{\kilo\electronvolt}. Maps are independently normalized to unit probability and share a logarithmic colour scale.\par}
+\end{minipage}
+
+\tableofcontents
+
+\mainmatter
+
+\input{chapters/02-introduction}
+\input{chapters/03-foundations}
+\input{chapters/04-simulations}
+\input{chapters/06-results}
+\input{chapters/07-conclusion}
+
+\appendix
+\input{appendices/running-simulations}
+
+\printbibliography[title={References}]
+
+\end{document}

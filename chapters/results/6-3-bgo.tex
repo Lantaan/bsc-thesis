@@ -1,0 +1,133 @@
+% chktex-file 29
+\section{BGO}
+\label{sec:bgo}
+
+\subsection{Motivation, implementation, and expected physical consequences}
+
+A material with a larger photoelectric contribution is expected to reduce the spatial redistribution caused by scattered primary gammas. For this reason, high-$Z$, high-density \ce{Bi4Ge3O12} (BGO) is of interest and was added as a selectable material to the simulation. It is compared with \ce{CeBr3} using the same crystal dimensions, reflector, housing, beam, and detection plane. The relevant configured properties are summarized in \cref{tab:material-properties}. BGO's bismuth content and density are expected to provide stronger attenuation and a larger photoelectric contribution.
+
+This combination is expected to produce a more compact deposited-energy distribution by reducing the average transverse displacement of primary gammas.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Scintillator properties configured in the simulation. Yields give the mean number of emitted photons per unit deposited energy. Bulk optical absorption is the optical-photon absorption length, with the \ce{CeBr3} range reflecting its dependence on optical-photon energy. The BGO model adopts the \qty{4.00}{\metre} absorption-length input used in the \qty{480}{\nano\metre} optical simulations of \textcite[section II-B and table I]{valenciaga2018geometry}, applying it here independently of wavelength.}
+\label{tab:material-properties}
+\begin{tabularx}{\textwidth}{l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+Material & Density & \shortstack{Scintillation\\yield} & \shortstack{Optical absorption\\length} \\
+\midrule
+\ce{CeBr3} & \qty{5.20}{\gram\per\cubic\centi\metre} & \qty{60}{\per\kilo\electronvolt}\newline\parencite{ovsiannikova2020light} & \qtyrange{105}{155}{\milli\metre}, energy dependent \\
+\ce{Bi4Ge3O12} & \qty{7.13}{\gram\per\cubic\centi\metre}\newline\parencite{miller2025material} & \qty{8.5}{\per\kilo\electronvolt}\newline\parencite{miller2025material} & \qty{4.00}{\metre}, constant\newline\parencite{valenciaga2018geometry} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\subsection{Interaction probabilities and event classes compared with \ce{CeBr3}}
+
+The material comparison uses \qty{100}{\kilo\electronvolt}, \qty{662}{\kilo\electronvolt}, and \qty{1000}{\kilo\electronvolt}, while all other settings follow the defaults defined in \cref{chap:simulations}.
+At \qty{662}{\kilo\electronvolt}, approximately \qty{51}{\percent} of incident gammas interact in BGO, compared with \qty{33}{\percent} in \ce{CeBr3}. At that energy, among interacting primaries, the BGO sample is \qty{32}{\percent} photoelectric-first and \qty{64}{\percent} Compton-first, compared with \qty{9.5}{\percent} and \qty{88}{\percent} in \ce{CeBr3}. The three-energy summary is given in \cref{tab:material-first-interactions}. This confirms the expected increase in overall interaction probability and in the fraction of photoelectric interactions in BGO.
+
+\begin{table}[htbp]
+\centering\small
+\caption{First-interaction statistics for \ce{CeBr3} and BGO. Each material--energy case contains \num{100000} incident gammas at normal incidence. The interaction probability refers to all incident gammas, while process shares are conditioned on an interaction in the scintillator. Independently rounded process shares may not sum to exactly \qty{100}{\percent}.}
+\label{tab:material-first-interactions}
+\begin{tabular}{lrrrrr}
+\toprule
+Material & $E$ (\unit{\kilo\electronvolt}) & Interaction & Photoelectric & Compton & Rayleigh \\
+\midrule
+\ce{CeBr3} & 100 & 99.9\% & 85.0\% & 8.8\% & 6.2\% \\
+BGO & 100 & 100.0\% & 93.8\% & 2.9\% & 3.4\% \\
+\ce{CeBr3} & 662 & 32.6\% & 9.5\% & 87.5\% & 3.0\% \\
+BGO & 662 & 51.0\% & 31.5\% & 64.1\% & 4.4\% \\
+\ce{CeBr3} & 1000 & 26.4\% & 5.3\% & 93.0\% & 1.7\% \\
+BGO & 1000 & 38.6\% & 19.4\% & 77.7\% & 3.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Fate and displacement of scattered gammas}
+
+Following the classification in \cref{sec:cebr3-fates}, Compton-first histories are separated by eventual photoabsorption or escape and by subsequent scattering. \Cref{tab:material-compton-fates} gives the BGO fractions. The eventually absorbed fractions of Compton-first primaries in BGO are \qty{79}{\percent}, \qty{59}{\percent}, and \qty{48}{\percent} at \qty{100}{\kilo\electronvolt}, \qty{662}{\kilo\electronvolt}, and \qty{1000}{\kilo\electronvolt}, compared with \qty{91}{\percent}, \qty{30}{\percent}, and \qty{23}{\percent} in \ce{CeBr3}. The higher absorbed fraction in BGO at high energies is expected, but the reversal at \qty{100}{\kilo\electronvolt} requires explanation.
+
+The lower eventual absorption in BGO cannot be attributed to a difference in Compton kinematics, which are nearly independent of the material. \Cref{fig:material-compton-angles} illustrates this weak material dependence. At \qty{662}{\kilo\electronvolt}, the mean first-scatter angles are nearly identical: \ang{68.3} in \ce{CeBr3} and \ang{68.0} in BGO. A shallower first-Compton interaction depth provides an explanation for the lower absorbed fraction at \qty{100}{\kilo\electronvolt}. At this energy, the median depth of the first-Compton interaction in BGO is \qty{0.25}{\milli\metre} compared with \qty{1.03}{\milli\metre} in \ce{CeBr3}. Consequently, after a gamma backscatters towards the entrance, it has a shorter path to escape in BGO than in \ce{CeBr3}.
+
+\begin{figure}[!htbp]
+  \captionsetup{font=small}
+  \centering
+  \thesisfigure{\textwidth}{chapter6_3}{figure_6_3_material_compton_angles}
+  \caption{Unit-normalized first-Compton-angle densities for \ce{CeBr3} and BGO at \qty{662}{\kilo\electronvolt}, using common \ang{4} bins from \ang{0} to \ang{180}. Filled orange bars show BGO, and an unfilled blue step histogram shows \ce{CeBr3} with identical bin boundaries. The dashed curve is the normalized free-electron Klein--Nishina expectation from \cref{eq:klein-nishina-angle}. The upper axis gives the free-electron outgoing energy $E'(\chi)$.}
+  \label{fig:material-compton-angles}
+\end{figure}
+
+\begin{table}[htbp]
+\centering\small
+\caption{Eventual fate and subsequent scattering of Compton-first BGO histories. Samples contain \num{100000} incident gammas per energy at normal incidence. Percentages refer to the corresponding Compton-first total. ``Additional Compton'' includes histories that also contain later Rayleigh scattering. Independently rounded entries may not add to the displayed totals.}
+\label{tab:material-compton-fates}
+\begin{tabular}{rlrrrr}
+\toprule
+$E$ (\unit{\kilo\electronvolt}) & Fate & Total & \shortstack{No additional\\scattering} & \shortstack{Additional\\Rayleigh only} & \shortstack{Additional\\Compton} \\
+\midrule
+100 & Absorbed & 78.7\% & 70.7\% & 4.7\% & 3.2\% \\
+100 & Escaped & 21.3\% & 19.5\% & 1.0\% & 0.8\% \\
+662 & Absorbed & 59.2\% & 39.8\% & 1.7\% & 17.6\% \\
+662 & Escaped & 40.8\% & 33.9\% & 1.3\% & 5.6\% \\
+1000 & Absorbed & 48.4\% & 30.0\% & 1.3\% & 17.1\% \\
+1000 & Escaped & 51.6\% & 43.0\% & 1.0\% & 7.6\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\Cref{fig:material-displacements} compares the transverse displacement distribution of absorbed Compton-first histories in BGO and \ce{CeBr3}. It confirms the expectation that scattered gammas travel a shorter distance in BGO, with median transverse displacements in \ce{CeBr3}/BGO of \qty{0.48}{\milli\metre}/\qty{0.23}{\milli\metre} at \qty{100}{\kilo\electronvolt}, \qty{4.6}{\milli\metre}/\qty{2.1}{\milli\metre} at \qty{662}{\kilo\electronvolt}, and \qty{5.4}{\milli\metre}/\qty{2.7}{\milli\metre} at \qty{1000}{\kilo\electronvolt}. The medians are therefore about a factor of two smaller in BGO.
+
+
+
+\begin{figure}[!htbp]
+  \captionsetup{font=small}
+  \centering
+  \thesisfigure{\textwidth}{chapter6_3}{figure_6_3_material_displacements}
+  \caption{Transverse primary-gamma displacement from first interaction to eventual photoabsorption for absorbed Compton-first \ce{CeBr3} and BGO histories at \qty{100}{\kilo\electronvolt}, \qty{662}{\kilo\electronvolt}, and \qty{1000}{\kilo\electronvolt}. Each material--energy case contains \num{100000} incident gammas at normal incidence. Each curve is normalized by the full absorbed Compton-first count and bin width, not just the displayed range. Blue denotes \ce{CeBr3} and orange BGO. Each energy has its own linear vertical scale. The \qty{100}{\kilo\electronvolt} panel uses \qty{0.1}{\milli\metre} bins over \qtyrange{0}{3}{\milli\metre}, while the other panels use \qty{0.5}{\milli\metre} bins below \qty{5}{\milli\metre} and \qty{1}{\milli\metre} bins up to \qty{25}{\milli\metre}.}
+  \label{fig:material-displacements}
+\end{figure}
+
+\subsection{Energy-deposition comparison with \ce{CeBr3}}
+\label{sec:material-edep-method}
+
+The material-dependent gamma histories translate directly into the deposited-energy field shown in \cref{fig:material-edep}. Both materials are compared on the same radial and depth grids, with narrow bins near the beam axis and entrance face and wider bins in the sparsely populated outer regions.\footnote{\label{fn:material-edep-bins}Radial boundaries in millimetres are 0, 0.0025, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.3, 0.5, 0.75, 1, 1.5, 2, 3, 5, 7.5, 10, 15, 20, and 25.5. Depth bins have widths of \qty{0.1}{\milli\metre} from 0 to \qty{1}{\milli\metre}, \qty{0.2}{\milli\metre} from 1 to \qty{2}{\milli\metre}, then boundaries at 2.5, 3, 4, 6, and \qty{10}{\milli\metre}.}
+
+At \qty{662}{\kilo\electronvolt}, BGO deposits \qty{258}{\kilo\electronvolt} per incident primary, roughly twice the \qty{123}{\kilo\electronvolt} in \ce{CeBr3}. Only \qty{6.2}{\percent} of this energy lies beyond \qty{5}{\milli\metre}, compared with \qty{11}{\percent} in \ce{CeBr3}. The same ordering is found at \qty{1000}{\kilo\electronvolt}. BGO's larger photoelectric-first share, stronger reabsorption of scattered primaries, and shorter transverse gamma displacement therefore reduce the outer part of the deposited-energy distribution.
+
+\begin{figure}[!htbp]
+  \captionsetup{font=small}
+  \centering
+  \thesisfigure{0.94\textwidth}{chapter6_3}{figure_6_3_material_edep}
+  \caption{Normalized deposited-energy densities for \ce{CeBr3} (blue) and BGO (orange), using \num{100000} incident gammas per material and energy at perpendicular incidence. Bin energies are divided by the full in-crystal deposited energy and by radial or depth bin width, respectively. The top panels compare radii from the beam axis at \qty{100}{\kilo\electronvolt}, \qty{662}{\kilo\electronvolt}, and \qty{1000}{\kilo\electronvolt}, with a common logarithmic vertical scale and a linear radial axis spanning \qtyrange{0}{25.5}{\milli\metre}. All radial curves use one common variable-width radial grid, which is narrow near the beam axis and broader in the sparse outer region. The bottom panel overlays entrance-referenced depth densities at \qty{100}{\kilo\electronvolt} (solid) and \qty{662}{\kilo\electronvolt} (dashed), using material colours and a logarithmic vertical scale. All depth curves use a separate variable-width depth grid, which resolves the entrance region more finely than the detector-side region. Both radial and depth bin boundaries are specified in \hyperref[fn:material-edep-bins]{footnote~\ref*{fn:material-edep-bins}}.}
+  \label{fig:material-edep}
+\end{figure}
+
+At \qty{100}{\kilo\electronvolt}, the width ordering reverses. The beam-axis radius $r_{50}$ encloses half of the total deposited energy. BGO has $r_{50}=\qty{0.039}{\milli\metre}$, compared with $r_{50}=\qty{0.0053}{\milli\metre}$ in \ce{CeBr3}, and deposits \qty{86}{\kilo\electronvolt} rather than \qty{99}{\kilo\electronvolt} per primary.
+Nearly all incident gammas interact in both materials at this energy. In BGO, however, interactions occur closer to the entrance and more of the resulting energy escapes from that nearby surface. This removes part of the strongly beam-centred deposition. After the remaining deposited energy is normalized to one, energy deposited farther from the axis consequently has a larger relative weight.
+
+\begin{figure}[!t]
+  \captionsetup{font=small}
+  \centering
+  \thesisfigure{\textwidth}{chapter6_3}{figure_6_3_material_optical_shapes}
+  \caption{Unit-normalized \ce{CeBr3} and BGO detector maps under perpendicular point-beam irradiation, with \num{20000} incident gammas per material and energy, at \qty{100}{\kilo\electronvolt}, \qty{662}{\kilo\electronvolt}, and \qty{1000}{\kilo\electronvolt}, using uniform \qtyproduct{1 x 1}{\milli\metre} cells and one common logarithmic probability-density scale (top two rows). The bottom row displays the corresponding radial probability densities using the standard optical radial bins specified in \cref{fig:energy-maps}.}
+  \label{fig:material-optical-shapes}
+\end{figure}
+
+\subsection{Normalized optical-photon distribution compared with \ce{CeBr3}}
+
+The optical-photon distributions in \cref{fig:material-optical-shapes}, obtained using \num{20000} primaries per material and energy, show the same qualitative energy dependence in both materials. At \qty{100}{\kilo\electronvolt}, \qty{662}{\kilo\electronvolt}, and \qty{1000}{\kilo\electronvolt}, the radial FWHM values are \qty{8.9}{\milli\metre}, \qty{0.23}{\milli\metre}, and \qty{0.22}{\milli\metre} in \ce{CeBr3}, and \qty{13.8}{\milli\metre}, \qty{0.22}{\milli\metre}, and \qty{0.24}{\milli\metre} in BGO. The corresponding $P(r>\qty{5}{\milli\metre})$ values are 0.83, 0.76, and 0.75 for \ce{CeBr3}, compared with 0.85, 0.78, and 0.77 for BGO. BGO therefore has a larger tail probability at all three energies and a larger FWHM at \qty{100}{\kilo\electronvolt} and \qty{1000}{\kilo\electronvolt}, while at \qty{662}{\kilo\electronvolt} its FWHM is marginally smaller.
+
+BGO's longer bulk absorption length allows more optical photons following long or reflected paths to survive. At the same time, its stronger gamma attenuation moves the scintillation source towards the entrance face, increasing the distance to the detector plane. These effects enlarge the broad detector-plane component even though the high-energy deposited-energy field is more compact.
+
+\subsection{Absolute optical-photon yield compared with \ce{CeBr3}}
+
+One major material difference is scintillation yield: the configured BGO-to-\ce{CeBr3} yield ratio is $8.5/60\approx 0.14$. The corresponding detected-photon count ratios are 0.15, 0.34, and 0.31 at \qty{100}{\kilo\electronvolt}, \qty{662}{\kilo\electronvolt}, and \qty{1000}{\kilo\electronvolt}. The higher BGO interaction probability and longer optical absorption length partly compensate for its smaller yield at high energies. At \qty{100}{\kilo\electronvolt}, nearly every incident gamma produces detected light in both materials and the ratio remains close to the configured yield ratio.
+
+\subsection{Assessment of material-dependent trade-offs}
+
+For the simulated \qtyproduct{51 x 51 x 10}{\milli\metre} geometry, BGO does not provide the hoped-for sharper normalized optical response. It also produces markedly fewer detected photons. Thus, for spatial localization in this geometry, BGO offers no consistent advantage in the shape of the optical distribution and incurs a substantial signal penalty.
+
+\FloatBarrier

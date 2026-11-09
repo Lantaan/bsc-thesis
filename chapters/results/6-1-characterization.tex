@@ -1,0 +1,98 @@
+% chktex-file 29
+\section{Characterization of the \ce{CeBr3} optical-photon distribution}
+
+This section establishes the main energy- and geometry-dependent features of the detector-plane optical distribution before their physical origin and parametrization are examined in subsequent sections.
+
+\subsection{Dependence on incident gamma energy}
+\label{sec:cebr-energy-scan}
+
+\begin{figure}[H]
+  \centering
+  \captionsetup{font=small}
+  \thesisfigure{0.90\textwidth}{chapter6_1}{figure_6_1_energy_maps_profiles}
+  \caption{Unit-normalized detector-plane optical-photon probability densities for \ce{CeBr3} under perpendicular point-beam irradiation at \qty{100}{\kilo\electronvolt}, \qty{662}{\kilo\electronvolt}, and \qty{1000}{\kilo\electronvolt} (top), with the corresponding radial probability densities (bottom). The maps contain exact \qtyproduct{1 x 1}{\milli\metre} cells over $\qty{-25.5}{\milli\metre}\leq x,y\leq\qty{25.5}{\milli\metre}$ and share a logarithmic colour scale. Radial bins have widths of \qty{0.05}{\milli\metre} for $\qty{0}{\milli\metre}\leq r<\qty{1}{\milli\metre}$, \qty{0.25}{\milli\metre} for $\qty{1}{\milli\metre}\leq r<\qty{5}{\milli\metre}$, \qty{1}{\milli\metre} for $\qty{5}{\milli\metre}\leq r<\qty{25}{\milli\metre}$, and \qty{0.5}{\milli\metre} in the final interval to \qty{25.5}{\milli\metre}. Lines connect radial-bin centres.}
+  \label{fig:energy-maps}
+\end{figure}
+
+The dependence of the optical distribution on the incident gamma energy is first examined with a perpendicular point beam. The \qtyproduct{51 x 51 x 10}{\milli\metre} \ce{CeBr3} crystal is irradiated with \num{20000} gammas at \qty{100}{\kilo\electronvolt}, \qty{662}{\kilo\electronvolt}, and \qty{1000}{\kilo\electronvolt}. Every detector-plane optical map is normalized to unit detected-photon probability, so only its shape is compared. Radial profiles are constructed from detected-photon positions using $r=\sqrt{x^2+y^2}$. The count in each bin is divided by the full-map photon count and the annular area. The radial limit of \qty{25.5}{\milli\metre} excludes incomplete annuli, while photons in the detector corners remain in the normalization.
+
+
+\Cref{fig:energy-maps} shows a broad, smooth distribution at low gamma energy and a sharp central peak at higher energy, consistent with the qualitative energy dependence reported by \textcite{ovsiannikova2020light}. The radial full width at half maximum (FWHM) is \qty{8.9}{\milli\metre}, \qty{0.23}{\milli\metre}, and \qty{0.22}{\milli\metre}, respectively. Across these three cases, $P(r>\qty{5}{\milli\metre})$ decreases from 0.83 to 0.76 and 0.75, confirming the visual impression that the distribution steepens with increasing energy and becomes nearly identical at \qty{662}{\kilo\electronvolt} and \qty{1000}{\kilo\electronvolt}.
+
+
+
+\begin{figure}[H]
+  \centering
+  \thesisfigure{\textwidth}{chapter6_1}{figure_6_1_depth_conditioning}
+  \caption{Depth-conditioned optical distributions for \ce{CeBr3} at normal incidence. The upper row compares the full \qty{100}{\kilo\electronvolt} optical map with \qty{662}{\kilo\electronvolt} maps conditioned on a first interaction in $\qty{-5}{\milli\metre}\leq z<\qty{-4}{\milli\metre}$ and $\qty{4}{\milli\metre}\leq z\leq\qty{5}{\milli\metre}$. The maps are normalized independently, use exact \qtyproduct{1 x 1}{\milli\metre} cells, and share a logarithmic scale. The lower panel shows radial densities for these three samples and for the unconditioned \qty{662}{\kilo\electronvolt} sample. All four profiles use the radial-bin sizes specified in \cref{fig:energy-maps}. Counts are divided by the annular area and by the total detected-photon count of the corresponding sample, including photons in the detector corners. Lines connect radial-bin centres. For the full \qty{100}{\kilo\electronvolt} and entrance-side \qty{662}{\kilo\electronvolt} maps, respectively, the FWHM values are \qty{8.9}{\milli\metre} and \qty{14}{\milli\metre}, $P(r>\qty{5}{\milli\metre})$ is 0.83 and 0.76, and the Pearson correlation between corresponding pixel probabilities is 0.998.}
+  \label{fig:depth-conditioning}
+\end{figure}
+
+One explanation for the energy dependence is the gamma interaction-depth distribution. Low-energy gammas interact mainly near the entrance face, whereas higher-energy gammas more often reach the detector-side part of the crystal. The deposited-energy field describes where energy is deposited in the crystal, including the effects of secondary-particle transport. The fraction of the total in-crystal deposited energy lying in the detector-side volume $\qty{4}{\milli\metre}<z\leq\qty{5}{\milli\metre}$ rises from \qty{0.15}{\percent} at \qty{100}{\kilo\electronvolt} to approximately \qty{9}{\percent} at both \qty{662}{\kilo\electronvolt} and \qty{1000}{\kilo\electronvolt}. Scintillation light produced closer to the detection plane travels a shorter optical path and is therefore expected to spread less transversely, possibly explaining the change in the optical distribution.
+
+To test this explanation, two \qty{662}{\kilo\electronvolt} optical maps are constructed by selecting events according to their first-interaction depth. Each incident gamma and its secondaries share an event identifier, linking the detected light to the primary's interaction history. Depth selection retains all detected photons from a selected event, including light produced after later interactions elsewhere.
+The entrance-side sample includes light from events whose first gamma interaction in the crystal occurred within $\qty{-5}{\milli\metre}\leq z<\qty{-4}{\milli\metre}$, while the detector-side sample uses $\qty{4}{\milli\metre}\leq z\leq\qty{5}{\milli\metre}$.
+
+
+As shown in \cref{fig:depth-conditioning}, the entrance-side map is qualitatively similar to the full \qty{100}{\kilo\electronvolt} map: both are broad and smooth. Their FWHM values differ by approximately a factor of 1.5. This difference is expected because the full low-energy sample follows an exponential interaction-depth distribution, whereas the conditioned sample selects events whose first interaction occurs in the first millimetre. The similarity nevertheless supports interaction depth as an important cause of the low-energy shape.
+
+The complete energy scan uses \qtylist{50;75;100;150;200;300;350;400;500;662;800;900;1000}{\kilo\electronvolt} to resolve the transition in more detail. The FWHM is approximately \qty{14}{\milli\metre} at \qty{50}{\kilo\electronvolt} and \qty{75}{\kilo\electronvolt}, falls to \qty{8.9}{\milli\metre} at \qty{100}{\kilo\electronvolt}, and reaches its global minimum of \qty{0.14}{\milli\metre} at \qty{200}{\kilo\electronvolt}. It then rises to approximately \qty{0.2}{\milli\metre} above \qty{662}{\kilo\electronvolt}. Interaction depth alone cannot explain this later increase. Gamma scattering provides a possible explanation and is examined in \cref{sec:interactions}. Although the FWHM changes by two orders of magnitude, the tail probability $P(r>\qty{5}{\milli\metre})$ decreases only from approximately 0.83 at low energy to 0.75 at high energy. The response therefore changes from a broad low-energy distribution into a narrow high-energy core superposed on an outer component that remains dominant.
+
+\subsection{Influence of source geometry}
+\subsubsection{Incidence-angle dependence}
+
+In addition to gamma energy, the incidence angle can affect the optical distribution. To examine this dependence, a point beam irradiates the \ce{CeBr3} crystal with \num{20000} incident \qty{662}{\kilo\electronvolt} gammas at \ang{0}, \ang{30}, and \ang{60} from the centre of the entrance face.
+
+The straight-line exit position is
+\begin{equation}
+  x_{\mathrm{exit}}=\qty{10}{\milli\metre}\tan\theta,
+\end{equation}
+and therefore equals approximately \qty{0}{\milli\metre}, \qty{5.8}{\milli\metre}, and \qty{17}{\milli\metre} for the three angles.
+
+\begin{figure}[H]
+  \centering
+  \thesisfigure{\textwidth}{chapter6_1}{figure_6_1_angle_dependence}
+  \caption{Unit-normalized detector-plane optical-photon densities for \ce{CeBr3} irradiated by a \qty{662}{\kilo\electronvolt} point beam at \ang{0}, \ang{30}, and \ang{60} (top), with the corresponding $x$ marginals integrated over all $y$ (bottom). The maps use exact \qtyproduct{1 x 1}{\milli\metre} cells and a shared logarithmic colour scale. Marginals use uniform \qty{0.25}{\milli\metre} bins from \qty{-25.5}{\milli\metre} to \qty{25.5}{\milli\metre}. Dashed lines and triangles mark $x_{\mathrm{exit}}=\qty{10}{\milli\metre}\tan\theta$.}
+  \label{fig:angle-dependence}
+\end{figure}
+
+As \cref{fig:angle-dependence} shows, increasing the angle makes the distribution more asymmetric and shifts its peak. The loss of symmetry at energies of \qty{100}{\kilo\electronvolt} and above was reported qualitatively by \textcite[p. 36]{ovsiannikova2020light}.
+
+After integration over $y$, the peaks lie at $x=\qty{-0.13(13)}{\milli\metre}$, $x=\qty{5.63(13)}{\milli\metre}$, and $x=\qty{16.88(13)}{\milli\metre}$. Peak positions are the centres of the highest \qty{0.25}{\milli\metre} marginal bins, with half-bin-width uncertainties. The inclined peaks differ from the straight-line exit by only \qty{-0.15(13)}{\milli\metre} at \ang{30} and \qty{-0.45(13)}{\milli\metre} at \ang{60}, showing that the peak closely follows the projected exit position.
+
+
+\subsubsection{Finite beam width}
+
+Real beams have a finite transverse extent. The point source is therefore compared with a newly implemented uniform disk of \qty{0.5}{\milli\metre} diameter and a circular Gaussian source of \qty{0.5}{\milli\metre} FWHM. These profiles change transverse source positions while retaining parallel particle directions. Each source irradiates \ce{CeBr3} at \qty{662}{\kilo\electronvolt} and perpendicular incidence with \num{20000} primaries.
+
+\begin{figure}[H]
+  \centering
+  \thesisfigure{\textwidth}{chapter6_1}{figure_6_1_source_profiles}
+  \caption{Unit-normalized radial optical-photon densities for \ce{CeBr3} irradiated at \qty{662}{\kilo\electronvolt} and \ang{0} by a point beam, a uniform disk of \qty{0.5}{\milli\metre} diameter, and a circular Gaussian beam of \qty{0.5}{\milli\metre} FWHM. The central region $\qty{0}{\milli\metre}\leq r\leq\qty{1}{\milli\metre}$ uses a linear scale and \qty{0.025}{\milli\metre} bins (left). The outer region $\qty{1}{\milli\metre}\leq r\leq\qty{25.5}{\milli\metre}$ uses a logarithmic scale and the standard outer radial bins: \qty{0.25}{\milli\metre} from \qty{1}{\milli\metre} to \qty{5}{\milli\metre}, \qty{1}{\milli\metre} from \qty{5}{\milli\metre} to \qty{25}{\milli\metre}, and a final \qty{0.5}{\milli\metre} bin. The line at $r=\qty{0.25}{\milli\metre}$ marks both the disk radius and the radial half-maximum position of the Gaussian source. Lines connect the exact bin-centre densities.}
+  \label{fig:source-profiles}
+\end{figure}
+
+As shown in \cref{fig:source-profiles}, the radial FWHM values are \qty{0.23}{\milli\metre}, \qty{0.61}{\milli\metre}, and \qty{0.87}{\milli\metre} for the point, disk, and Gaussian sources. The corresponding $P(r>\qty{5}{\milli\metre})$ values are approximately \num{0.757} for all sources. A finite source therefore broadens the central peak without noticeably changing the outer component.
+
+\subsection{Effect of gamma scattering}
+\label{sec:scattering-control}
+
+To quantify the difference between two unit-normalized maps with pixel probabilities $d_i$ and $m_i$, total variation is defined as
+\begin{equation}
+  \operatorname{TV}(d,m)=\frac12\sum_i|d_i-m_i|.
+  \label{eq:total-variation}
+\end{equation}
+It is zero for identical maps.
+
+
+To investigate the influence of scattering on the scintillation photon distribution, a simulation with disabled scattering is performed using \num{20000} incident \qty{662}{\kilo\electronvolt} gammas at normal incidence in the same \ce{CeBr3} geometry and optical configuration. In this scattering-disabled comparison run, gamma Compton and Rayleigh scattering are switched off. Photoelectric absorption, secondary-particle transport, scintillation, and optical transport remain enabled and unchanged.
+
+\begin{figure}[H]
+  \centering
+  \thesisfigure{\textwidth}{chapter6_1}{figure_6_1_scattering_control}
+  \caption{Unit-normalized radial optical-photon densities for matched \qty{662}{\kilo\electronvolt} \ce{CeBr3} simulations with gamma scattering enabled and disabled. The central region uses a linear scale with common bin widths of \qty{0.01}{\milli\metre} from \qty{0}{\milli\metre} to \qty{0.10}{\milli\metre}, \qty{0.025}{\milli\metre} from \qty{0.10}{\milli\metre} to \qty{0.25}{\milli\metre}, and \qty{0.05}{\milli\metre} from \qty{0.25}{\milli\metre} to \qty{1}{\milli\metre} (left). The outer region uses the standard radial bins on a logarithmic scale: \qty{0.25}{\milli\metre} from \qty{1}{\milli\metre} to \qty{5}{\milli\metre}, \qty{1}{\milli\metre} from \qty{5}{\milli\metre} to \qty{25}{\milli\metre}, and a final \qty{0.5}{\milli\metre} bin. Counts are divided by annular area and by the total detected-photon count. The underlying normalized \numproduct{51 x 51} maps differ by TV 0.034.}
+  \label{fig:scattering-control}
+\end{figure}
+
+As \cref{fig:scattering-control} shows, enabling gamma scattering raises the mean radius from \qty{11.7}{\milli\metre} to \qty{12.3}{\milli\metre}, the median radius from \qty{10.0}{\milli\metre} to \qty{10.8}{\milli\metre}, and $P(r>\qty{5}{\milli\metre})$ from 0.72 to 0.76. The change is nevertheless not a uniform broadening. In the central bins, the scattering-enabled density is higher from the origin to about $r=\qty{0.10}{\milli\metre}$, whereas the scattering-disabled density is higher over the rest of the central panel. Gamma scattering therefore shifts normalized probability towards both the innermost core and the outer component at the expense of intermediate radii.
+\FloatBarrier

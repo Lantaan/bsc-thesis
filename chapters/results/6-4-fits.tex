@@ -1,0 +1,135 @@
+% chktex-file 3
+% chktex-file 12
+% chktex-file 25
+% chktex-file 29
+\section{Parametric fits of the optical-photon distributions}
+\label{sec:fits}
+
+\subsection{Modelling target and selection criteria}
+\label{sec:shape-validation}
+
+This section examines parametric descriptions of the detector-plane distribution, which might allow beam properties such as the gamma spectrum to be inferred from a measured spatial response. At each of the 13 energies listed in \cref{sec:cebr-energy-scan}, the fit target is the complete wavelength-integrated $51\times51$ map for a point beam, normalized to unit probability. Absolute light yield is excluded. Radial and central-strip profiles visualize these full-map fits.
+
+Model pixel probabilities $m_i$ are obtained by integrating the model over each pixel and normalizing over the detector. Fits minimize cross-entropy $L=-\sum_i d_i\ln m_i$, where $d_i$ is the observed pixel probability.
+
+Complete events are assigned to five equally sized groups by their identifier. Each fit uses four groups and is tested on the independently normalized fifth, preventing correlated photons from one gamma from appearing in both samples. Each case is summarized by the mean of its five held-out TV values. Medians and worst values across cases refer to these case means. A useful model should combine low held-out TV as defined in \cref{eq:total-variation} with a small number of parameters.
+
+\subsection{Candidate models for perpendicular incidence}
+
+\subsubsection{Gaussian}
+The approximately Gaussian detector-plane distributions reported by \textcite[p.~40]{ovsiannikova2020light} for \ce{CeBr3} at gamma energies up to \qty{100}{\kilo\electronvolt} motivate the one-parameter Gaussian as a starting candidate:
+\begin{equation}
+  G(r;\sigma)=\exp\!\left(-\frac{r^2}{2\sigma^2}\right).
+\end{equation}
+The Gaussian model's median held-out TV is approximately 0.2 for both materials. As shown in \cref{fig:gaussian-moffat}, its single rapidly decaying scale cannot simultaneously capture the central concentration and the broad wings.
+
+\subsubsection{Moffat}
+
+To allow broader wings than the Gaussian, the next candidate is a radial Moffat profile with two parameters:
+\begin{equation}
+  M(r;p,w)=\left(1+\frac{r^2}{pw^2}\right)^{-p}.
+\end{equation}
+Here, $w$ is a width scale and $p$ is a dimensionless shape exponent.
+In the limit $p\to\infty$, it approaches $\exp(-r^2/w^2)$ and therefore contains a Gaussian with $\sigma=w/\sqrt{2}$ as a limiting case. Finite values of $p$ allow heavier tails.
+
+Its median held-out TV reaches 0.05 for \ce{CeBr3} and 0.04 for BGO, but the finite core misses the sharp high-energy peak visible in \cref{fig:gaussian-moffat}.
+
+
+\begin{figure}[!htbp]
+  \centering
+  \captionsetup{font=small}
+  \thesisfigure{\textwidth}{chapter6_4}{figure_6_4_gaussian_moffat}
+  \caption{Gaussian and Moffat fits to perpendicular \ce{CeBr3} profiles at 100, 662, and \qty{1000}{\kilo\electronvolt}, with \num{20000} primaries per case. Black lines with markers every third bin show photon counts divided by the complete-map count and annular area. Coloured curves show annular averages of models fitted to the complete detector map with \qtyproduct{1 x 1}{\milli\metre} cells. Radial bin widths are \qty{0.05}{\milli\metre} below \qty{1}{\milli\metre}, \qty{0.25}{\milli\metre} from 1 to \qty{5}{\milli\metre}, and \qty{1}{\milli\metre} above this, ending with a half-width bin at \qty{25.5}{\milli\metre}. All panels share the same axes, with logarithmic density.}
+  \label{fig:gaussian-moffat}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Direct exponential-depth kernel}
+
+The Moffat profile's insufficient core motivates a model in which the peak arises from scintillation sites close to the detector. This can happen in the simple case of an exponentially attenuated source along the incident beam, with direct isotropic propagation from each source point to the detector plane.
+
+For an on-axis point at normal distance $h$ from the detector, projection of the solid angle onto the plane gives the density
+\begin{equation}
+  K(r\mid h)\propto\frac{h}{(r^2+h^2)^{3/2}}.
+\end{equation}
+
+For a crystal of thickness $T=\qty{10}{\milli\metre}$, let $s$ denote the depth measured from the entrance. The source density is proportional to $e^{-s/\lambda}$ for $0\leq s\leq T$, giving the direct kernel
+\begin{equation}
+  L(r;\lambda)=A_\lambda\int_0^T
+  e^{-s/\lambda}K(r\mid T-s)\,\mathrm ds.
+\end{equation}
+The factor $A_\lambda$ normalizes the model on the finite detector.
+
+The median held-out TV is 0.11 for \ce{CeBr3} and 0.12 for BGO. Thus, the direct kernel performs worse than the Moffat profile over the complete map. As shown in \cref{fig:perpendicular-models}, this approach fails to reproduce both the central peak and the outer distribution. This is likely due to the effects of reflection, gamma scattering, and secondary-particle spreading.
+
+\subsubsection{Power law}
+
+Since the direct kernel does not describe the complete distribution, the central region is examined separately to identify a profile that can reproduce the sharp high-energy peak. In the double-logarithmic insets of \cref{fig:perpendicular-models}, the radial density is approximately linear over the resolved sub-millimetre range. This behaviour motivates the Power profile:
+\begin{equation}
+  P(r;q)=\left(\frac{r}{r_*}\right)^{-q},\qquad r_*=\qty{1}{\milli\metre}.
+\end{equation}
+The dimensionless exponent $q$ controls the radial decay.
+Because the model is integrated over finite two-dimensional pixels, the central integral is finite exactly when $q<2$. Fits use $0.01\leq q\leq1.98$. The fixed scale $r_*$ only sets the units and cancels after normalization.
+
+Its median held-out TV over the complete map is 0.09 for \ce{CeBr3} and BGO. The ability of the power law to describe the central peak is tested with a separate fit restricted to $r<\qty{1}{\milli\metre}$. This domain contains the 20 native \qty{0.05}{\milli\metre} radial bins. The median TV over all 13 energies in this domain is 0.013 for \ce{CeBr3} and 0.011 for BGO, with worst values of 0.041 and 0.027. The restricted fits shown in \cref{fig:perpendicular-models} therefore confirm that a power law describes the normalized sub-millimetre peak shape. It cannot, however, describe the broad outer component at the same time, explaining its high TV when fitted to the complete map.
+
+\begin{figure}[!htbp]
+  \centering
+  \captionsetup{font=small}
+  \thesisfigure{\textwidth}{chapter6_4}{figure_6_4_perpendicular_models}
+  \caption{Direct exponential-depth and Power fits to the same perpendicular \ce{CeBr3} profiles as in \cref{fig:gaussian-moffat}, using the same bins and complete-map normalization. Main-panel curves retain the parameters fitted to the complete \qtyproduct{1 x 1}{\milli\metre} detector map. The insets use logarithmic radius from 0.025 to \qty{1}{\milli\metre} and compare the fine-bin data with the direct kernel, the unrestricted Power fit, and an independent Power fit restricted to the 20 bins with $r<\qty{1}{\milli\metre}$. This restricted fit is normalized to the total probability in its domain.}
+  \label{fig:perpendicular-models}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Selected Power--Moffat mixture}
+
+Because the Power and Moffat candidates describe complementary features, they are combined in the mixture below. A hat denotes a component normalized separately over the finite detector.
+\begin{equation}
+  F_0(r)=(1-f_M)\widehat P(r;q)+f_M\widehat M(r;p,w).
+\end{equation}
+The weight $0\leq f_M\leq1$ is the Moffat fraction of the normalized model probability. The four-parameter mixture has a median held-out TV of approximately 0.020 for \ce{CeBr3} and 0.018 for BGO, with worst values of 0.023 and 0.021.
+This mixture has a low TV, uses relatively few parameters, and describes the central concentration and broad wings simultaneously at the \qtyproduct{1 x 1}{\milli\metre} fit resolution. It is therefore selected for perpendicular incidence. \Cref{fig:selected-perpendicular-fit} illustrates the selected mixture for both materials at \qty{662}{\kilo\electronvolt}.
+
+\begin{figure}[H]
+  \centering
+  \captionsetup{font=small}
+  \thesisfigure{\textwidth}{chapter6_4}{figure_6_4_selected_perpendicular_fit}
+  \caption{Selected Power--Moffat fits for \ce{CeBr3} and BGO at \qty{662}{\kilo\electronvolt} and perpendicular incidence, with \num{20000} primaries per case. Black points show radial data normalized by the complete-map photon count, and blue lines show the annularly averaged selected fits. Both panels use the bins and normalization of \cref{fig:perpendicular-models}, identical radius limits from 0 to \qty{25.5}{\milli\metre}, and a shared logarithmic density scale.}
+  \label{fig:selected-perpendicular-fit}
+\end{figure}
+
+\subsection{Inclined-beam extensions}
+
+The perpendicular model provides the baseline for an extension to inclined beams.
+
+The inclined study uses 18 matched cases: two materials, three energies (\qty{100}{\kilo\electronvolt}, \qty{662}{\kilo\electronvolt}, and \qty{1000}{\kilo\electronvolt}), and three angles (\ang{0}, \ang{30}, and \ang{60}), each with \num{20000} primaries. Twelve cases have nonzero inclination.
+
+\subsubsection{Shared-centre model}
+
+The first extension shifts both components to a shared centre along $x$:
+\begin{equation}
+  \rho_P^2=\rho_M^2=(x-x_c)^2+y^2,
+\end{equation}
+where $\rho$ is the distance from the shared component centre. Only $x_c$ is fitted because the beam lies in the $x$--$z$ plane and the geometry remains symmetric about $y=0$. A fitted $y_c$ coordinate could be added in the same way.
+This model yields a median held-out TV of 0.066 and a worst value of 0.103 because a radial profile about one centre cannot reproduce the strong asymmetry at high inclinations.
+
+\subsubsection{Two-centre model}
+
+To represent the asymmetry, the Power and Moffat components are instead assigned separate centres:
+\begin{equation}
+  \rho_P^2=(x-x_P)^2+y^2,
+  \qquad \rho_M^2=(x-x_M)^2+y^2.
+\end{equation}
+This allows the model to represent simultaneously the sharp exit-side peak and the broad entrance-side shoulder.
+The two-centre model reduces the median held-out TV to 0.033 and the worst value to 0.060. However, \cref{fig:coordinate-extensions} reveals a structural issue with the two-centre model: it generates a local minimum between the two fitted centres, while the data show a monotonic ridge. The interaction-depth dependence examined in \cref{sec:cebr-energy-scan} helps explain this discrepancy. Interactions near the entrance create a broad distribution, represented by the Moffat component, while interactions near the exit create a narrow distribution, represented by the Power component. Interactions along the beam produce a continuous transition between these shapes, which the two-centre model does not capture.
+
+A future extension that provides a continuous ridge between the broad shoulder and the narrow peak could reduce this artificial minimum.
+
+\begin{figure}[!htbp]
+  \centering
+  \captionsetup{font=small}
+  \thesisfigure{\textwidth}{chapter6_4}{figure_6_4_coordinate_extensions}
+  \caption{Central-strip profiles for \ce{CeBr3} at \qty{662}{\kilo\electronvolt} and incidence angles of \ang{0} and \ang{60}, with \num{20000} primaries per case. Black steps show photons in $|y|<\qty{0.5}{\milli\metre}$, binned in \qty{0.25}{\milli\metre} along $x$ and divided by the complete-map photon count and bin width. Grey, orange, and blue steps show the origin-constrained, shared-centre, and two-centre models integrated over the same \qty{0.25}{\milli\metre} strip bins. Both panels span $-25.5\leq x\leq25.5$ mm and share a logarithmic density scale. Vertical references mark the origin and the fitted centres of the shared-centre and two-centre models.}
+  \label{fig:coordinate-extensions}
+\end{figure}

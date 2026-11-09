@@ -1,0 +1,112 @@
+% chktex-file 3
+% chktex-file 25
+% chktex-file 29
+\section{Gamma interactions and energy deposition}
+\label{sec:interactions}
+
+The comparison with scattering disabled shows that gamma scattering broadens the outer distribution while also enhancing the innermost core. To understand these two effects, the following analysis separates displacement of the primary gamma from local energy spreading by its secondary particles.
+
+Unless stated otherwise, this section and \cref{sec:bgo} use perpendicular irradiation at \qty{100}{\kilo\electronvolt}, \qty{662}{\kilo\electronvolt}, and \qty{1000}{\kilo\electronvolt}. Gamma-history and energy-deposition samples contain \num{100000} incident gammas per material and energy. Optical comparisons use separate \num{20000}-primary samples.
+
+
+\subsection{Interaction probabilities and event classes}
+
+Each primary is assigned to one of four mutually exclusive classes according to its first interaction in the crystal: no interaction, photoelectric first, Compton first, or Rayleigh first. This classification determines how energy is transferred and which later histories can occur.
+
+As shown in \cref{tab:cebr-first-interactions}, Rayleigh-first histories account for approximately \qty{6}{\percent}, \qty{3}{\percent}, and \qty{2}{\percent} of interacting \ce{CeBr3} events at \qty{100}{\kilo\electronvolt}, \qty{662}{\kilo\electronvolt}, and \qty{1000}{\kilo\electronvolt}. These histories are included in the overall first-interaction statistics. However, because they are relatively infrequent at all three energies and a Rayleigh collision transfers no energy, they are discussed in less detail than Compton interactions, which dominate at high energies. At \qty{100}{\kilo\electronvolt}, gamma histories overwhelmingly consist of direct photoelectric absorption.
+
+\begin{table}[htbp]
+\centering\small
+\caption{First-interaction statistics for \ce{CeBr3}. Each material--energy case contains \num{100000} incident gammas at normal incidence. The interaction probability refers to all incident gammas, while process shares are conditioned on an interaction in the scintillator.}
+\label{tab:cebr-first-interactions}
+\begin{tabular}{rrrrr}
+\toprule
+$E$ (\unit{\kilo\electronvolt}) & Interaction & Photoelectric & Compton & Rayleigh \\
+\midrule
+100 & 99.9\% & 85.0\% & 8.8\% & 6.2\% \\
+662 & 32.6\% & 9.5\% & 87.5\% & 3.0\% \\
+1000 & 26.4\% & 5.3\% & 93.0\% & 1.7\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Repeated scattering, subsequent absorption, and escape}
+\label{sec:cebr3-fates}
+
+Because the first Compton collision is insufficient to determine the final energy deposition, Compton-first histories are classified by eventual photoabsorption or escape and by subsequent scattering counts. \Cref{tab:cebr-multiplicity} shows that eventual absorption occurs for \qty{91}{\percent}, \qty{30}{\percent}, and \qty{23}{\percent} of Compton-first \ce{CeBr3} histories at \qty{100}{\kilo\electronvolt}, \qty{662}{\kilo\electronvolt}, and \qty{1000}{\kilo\electronvolt}. The share that escapes without any additional in-crystal gamma scattering rises from \qty{8.6}{\percent} to \qty{54}{\percent} and \qty{60}{\percent}. These immediate-escape histories deposit energy only through the first Compton recoil and its local secondaries.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Eventual fate and subsequent scattering of Compton-first \ce{CeBr3} histories. Samples contain \num{100000} incident gammas per energy at normal incidence. Percentages refer to the corresponding Compton-first total. ``Additional Compton'' also includes histories that contain both later Rayleigh and Compton scattering.}
+\label{tab:cebr-multiplicity}
+\begin{tabular}{rlrrrr}
+\toprule
+$E$ (\unit{\kilo\electronvolt}) & Fate & Total & \shortstack{No additional\\scattering} & \shortstack{Additional\\Rayleigh only} & \shortstack{Additional\\Compton} \\
+\midrule
+100 & Absorbed & 90.8\% & 81.4\% & 4.1\% & 5.4\% \\
+100 & Escaped & 9.2\% & 8.6\% & 0.4\% & 0.2\% \\
+662 & Absorbed & 29.9\% & 15.3\% & 0.7\% & 14.0\% \\
+662 & Escaped & 70.1\% & 54.3\% & 1.5\% & 14.2\% \\
+1000 & Absorbed & 23.1\% & 10.7\% & 0.4\% & 12.1\% \\
+1000 & Escaped & 76.9\% & 60.1\% & 1.2\% & 15.5\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Interaction frequency alone does not determine the scintillation source, because the histories can deposit different amounts of the incident gamma energy. For each history class, the fraction of incident energy deposited is defined as its summed $E_{\mathrm{dep}}$ divided by the total energy of all incident gammas. \Cref{fig:event-energy-weight} compares this fraction with the corresponding fraction of incident events. Escaped Compton-first histories are separated according to whether the primary gamma escapes without later in-crystal scattering or undergoes further Compton or Rayleigh scattering first. This distinction shows how much energy is deposited by a local first recoil and how much is associated with additional gamma transport.
+
+\begin{figure}[!htbp]
+  \captionsetup{font=small}
+  \centering
+  \thesisfigure{\textwidth}{chapter6_2}{figure_6_2_event_energy_weight}
+  \caption{Fraction of incident events and fraction of total incident gamma energy deposited for photoelectric-first, eventually absorbed Compton-first, immediate-escape Compton-first, and Compton-first histories that escape after further primary-gamma Compton or Rayleigh interactions in \ce{CeBr3} at \qty{100}{\kilo\electronvolt}, \qty{662}{\kilo\electronvolt}, and \qty{1000}{\kilo\electronvolt}, using \num{100000} incident gammas per energy at normal incidence. Blue bars show event fractions and orange bars deposited-energy fractions. Immediate escape denotes escape without any later recorded in-crystal primary-gamma scattering. Rayleigh-first and noninteracting histories are omitted, but remain in the incident-total denominators.}
+  \label{fig:event-energy-weight}
+\end{figure}
+
+At \qty{100}{\kilo\electronvolt}, the event and deposited-energy fractions are nearly equal because photoelectric-first and eventually absorbed Compton-first histories deposit almost the full incident energy. At \qty{662}{\kilo\electronvolt} and \qty{1000}{\kilo\electronvolt}, escaped Compton-first histories are much more prominent in the event count than in the deposited energy. Eventually absorbed histories do not deposit the full incident energy because secondary particles escape. Histories that terminate in the crystal contribute disproportionately to the scintillation source relative to their event frequency, while the more numerous escape histories generally leave only partial energy deposits.
+
+\subsection{Initial Compton-scattering kinematics}
+
+The scattering kinematics help explain the influence of Compton-first histories by linking the initial energy transfer to the direction and remaining energy of the scattered gamma. In the representative \qty{662}{\kilo\electronvolt} \ce{CeBr3} sample, the median first-scatter angle is $\chi_{50}\approx\ang{60}$. If such a collision occurred at the entrance, straight propagation across the \qty{10}{\milli\metre} thickness would correspond to a transverse displacement of $\qty{10}{\milli\metre}\tan\chi_{50}\approx\qty{17}{\milli\metre}$.
+
+The free-electron relation in \cref{eq:compton-energy} links the scattering angle to the outgoing gamma energy and recoil-energy transfer.
+The Compton model includes bound-electron effects, so this expression is only a reference~\parencite{geant4polarizedcomptonsource}. Nevertheless, at \qty{662}{\kilo\electronvolt}, the simulated angular distribution closely follows the free-electron Klein--Nishina prediction, as shown in \cref{fig:compton-kinematics}.
+\Cref{fig:compton-kinematics} also shows how the initial scattering can strongly affect the eventual fate of the gamma. Gammas that scatter at $\ang{90}$ have the longest distance to travel before escaping the crystal, making them more likely to be absorbed or scatter again. At the same time, gammas that lose a large fraction of their energy during backscattering are also less likely to escape because of the higher attenuation at lower energies.
+
+\begin{figure}[!htbp]
+  \captionsetup{font=small}
+  \centering
+  \thesisfigure{\textwidth}{chapter6_2}{figure_6_2_compton_kinematics}
+  \caption{First-Compton-angle density for \qty{662}{\kilo\electronvolt} \ce{CeBr3} in \ang{4} bins from \ang{0} to \ang{180}. The filled bars stack eventual in-crystal photoabsorption (orange), escape without later primary-gamma scattering (blue), and escape after one or more later Compton or Rayleigh collisions (green). The dashed curve is the normalized free-electron Klein--Nishina expectation from \cref{eq:klein-nishina-angle}. The upper axis gives the free-electron outgoing energy $E'(\chi)$ at the angles marked on the lower axis.}
+  \label{fig:compton-kinematics}
+\end{figure}
+
+\subsection{Transverse gamma displacement}
+
+Energy can be deposited away from the beam because the primary gamma scatters and interacts again at another position, or because a charged secondary particle or fluorescence photon travels away from the interaction point. To separate these effects, the transverse displacement of the primary gamma is measured from its first interaction to its eventual absorption point. For Compton-first and Rayleigh-first histories that end in photoelectric absorption, this displacement is
+\begin{equation}
+  \Delta r_\perp=\sqrt{(x_{\mathrm{abs}}-x_{\mathrm{first}})^2+(y_{\mathrm{abs}}-y_{\mathrm{first}})^2}.
+\end{equation}
+\Cref{fig:gamma-displacement} shows the Compton-first distribution of this displacement. The Compton-first medians in \ce{CeBr3} are approximately \qty{0.5}{\milli\metre} at \qty{100}{\kilo\electronvolt}, \qty{4.6}{\milli\metre} at \qty{662}{\kilo\electronvolt}, and \qty{5.4}{\milli\metre} at \qty{1000}{\kilo\electronvolt}. These lengths are substantial relative to the \qty{25.5}{\milli\metre} half-width. This displacement provides a mechanism for the scattering-induced shift towards the outer component observed in \cref{sec:scattering-control}.
+
+\begin{figure}[!htbp]
+  \captionsetup{font=small}
+  \centering
+  \thesisfigure{\textwidth}{chapter6_2}{figure_6_2_gamma_displacement}
+  \caption{Transverse displacement from the first interaction to eventual primary-gamma photoabsorption for absorbed Compton-first \ce{CeBr3} histories, drawn from \num{100000} incident gammas per energy at perpendicular incidence, at \qty{100}{\kilo\electronvolt}, \qty{662}{\kilo\electronvolt}, and \qty{1000}{\kilo\electronvolt}. The \qty{100}{\kilo\electronvolt} panel uses \qty{0.1}{\milli\metre} bins over \qtyrange{0}{3}{\milli\metre}, while the higher-energy panels use \qty{0.5}{\milli\metre} bins below \qty{5}{\milli\metre} and \qty{1}{\milli\metre} bins up to \qty{25}{\milli\metre}. Counts are divided by the full absorbed Compton-first count and bin width, without renormalizing to the displayed range. Dotted and dashed vertical lines mark the median and 90th percentile of the full displacement sample.}
+  \label{fig:gamma-displacement}
+\end{figure}
+
+
+\subsection{Local spreading by secondary particles}
+
+Aside from gamma transport, secondary particles can also carry energy away from an interaction point. Photoelectric-first events provide one measure of local secondary-particle spreading: the primary gamma terminates at the first interaction, while secondary particles carry energy away from that point. A Compton interaction may behave differently from a photoelectric interaction in this regard due to the lower energy of an ejected Compton-recoil electron. To examine this contribution, Compton-first histories that escape without any further in-crystal interaction are considered. Their deposited energy comes from the first recoil and its secondaries, with no contribution from a later gamma interaction at a displaced position.
+
+Local spreading is quantified by the radius enclosing half of a history class's summed deposited energy, measured transversely from the first interaction point. For photoelectric-first events, these radii are \qty{0.0043}{\milli\metre}, \qty{0.14}{\milli\metre}, and \qty{0.23}{\milli\metre} at \qty{100}{\kilo\electronvolt}, \qty{662}{\kilo\electronvolt}, and \qty{1000}{\kilo\electronvolt}. For immediate-escape Compton-first histories, the corresponding medians are \qty{0.00012}{\milli\metre}, \qty{0.039}{\milli\metre}, and \qty{0.091}{\milli\metre}. The local Compton-recoil branch is therefore more concentrated than the photoelectric branch at all three energies, providing a mechanism for the enhanced innermost core observed in \cref{sec:scattering-control}.
+
+\subsection{Explanation of the moderate broadening caused by gamma scattering}
+
+Gamma scattering produces two spatially different contributions. At its first Compton collision, a gamma creates a recoil electron whose deposited energy is more localized than in photoelectric-first events. By contrast, gammas that interact again after their initial scatter move deposited energy several millimetres away from the beam axis and feed the outer component.
+
+Gamma scattering therefore changes both the core and tail in \cref{fig:scattering-control}. Because optical transport dominates the overall distribution, however, gamma scattering has only a moderate effect.
+\FloatBarrier

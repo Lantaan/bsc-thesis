@@ -1,0 +1,19 @@
+\chapter{Introduction}
+
+\section{Motivation}
+
+Measurements of gamma radiation provide information about its sources through the energies and arrival directions of the detected photons. Scintillation detectors make this radiation accessible to optical readout by converting deposited energy into light~\parencite{pedrini2005scintillation}. The spatial distribution of scintillation light in the detector contains additional information about the beam, such as its wavelength~\parencite{ovsiannikova2020light}.
+
+The measured distribution depends on the interactions within the crystal and the propagation of the scintillation light to the readout. Understanding this response is therefore necessary when relating detector signals to the radiation that produced them.
+
+\section{Previous work and open questions}
+This work builds on the Geant4 simulation of a \ce{CeBr3} scintillator developed by \textcite{ovsiannikova2020light}. That study showed that the spatial light distribution at the readout changes with gamma energy and incidence angle. Its detector setup provides the starting point for the present investigation.
+
+These observations raise the question of how the light pattern arises from gamma interactions, the resulting energy deposition, and the propagation of scintillation light. The present work examines their influence on the observed distribution.
+
+\section{Aim and scope of this thesis}
+This thesis investigates how the two-dimensional light distribution at the readout depends on gamma energy, incidence angle, and beam profile, and explores the physical origin of these changes. The material dependence is examined by comparing \ce{CeBr3} with bismuth germanate, \ce{Bi4Ge3O12} (BGO), in the same geometry.
+
+A simple mathematical model is developed to approximate the detected light distributions. Such a description could provide a basis for later inference of beam properties from measured light distributions.
+
+The study uses a fixed crystal geometry, gamma energies of \qtyrange{50}{1000}{\kilo\electronvolt}, and an ideal readout. No experimental validation is performed.
